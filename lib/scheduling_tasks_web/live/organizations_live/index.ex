@@ -20,20 +20,6 @@ defmodule SchedulingTasksWeb.OrganizationsLive.Index do
   def handle_event("verify", %{"id" => id}, socket) do
     user = Organizations.get_organization!(id)
 
-    {:ok, user} = Organizations.update_organization(user, %{role: "verified"})
-    IO.inspect(user)
-
-    users = Organizations.list_organizations()
-
-    {:noreply,
-     socket
-     |> assign(:users, users)
-     |> put_flash(:info, "User verified")}
-  end
-
-   def handle_event("verify", %{"id" => id}, socket) do
-    user = Organizations.get_organization!(id)
-
     {:ok, user} = Organizations.update_organization(user, %{role: "organization"})
     IO.inspect(user)
 
@@ -44,6 +30,8 @@ defmodule SchedulingTasksWeb.OrganizationsLive.Index do
      |> assign(:users, users)
      |> put_flash(:info, "User verified")}
   end
+
+
 
   def handle_event("unverify", %{"id" => id}, socket) do
     user = Organizations.get_organization!(id)

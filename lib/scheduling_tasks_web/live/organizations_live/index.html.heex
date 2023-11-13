@@ -47,7 +47,7 @@
                   Verify
                 </p>
               <% end %>
-              <%= if user.role == "verified" do %>
+              <%= if user.role == "organization" do %>
                 <p
                   phx-click="unverify"
                   class="bg-red-500 text-white rounded-md px-2 py-1  font-bold"
