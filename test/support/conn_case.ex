@@ -61,4 +61,30 @@ defmodule SchedulingTasksWeb.ConnCase do
     |> Phoenix.ConnTest.init_test_session(%{})
     |> Plug.Conn.put_session(:user_token, token)
   end
+
+  @doc """
+  Setup helper that registers and logs in organizations.
+
+      setup :register_and_log_in_organization
+
+  It stores an updated connection and a registered organization in the
+  test context.
+  """
+  def register_and_log_in_organization(%{conn: conn}) do
+    organization = SchedulingTasks.OrganizationsFixtures.organization_fixture()
+    %{conn: log_in_organization(conn, organization), organization: organization}
+  end
+
+  @doc """
+  Logs the given `organization` into the `conn`.
+
+  It returns an updated `conn`.
+  """
+  def log_in_organization(conn, organization) do
+    token = SchedulingTasks.Organizations.generate_organization_session_token(organization)
+
+    conn
+    |> Phoenix.ConnTest.init_test_session(%{})
+    |> Plug.Conn.put_session(:organization_token, token)
+  end
 end
