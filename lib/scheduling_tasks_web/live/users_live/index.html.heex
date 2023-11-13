@@ -11,6 +11,10 @@
       <thead class="border-b-2  border-black">
         <tr>
           <th class="p-2 font-semibold text-gray-700">Email</th>
+          <th class="p-2 font-semibold text-gray-700">Phone number</th>
+
+           <th class="p-2 font-semibold text-gray-700">Send SMS</th>
+          <th class="p-2 font-semibold text-gray-700">Send Email</th>
 
           <th class="p-2 font-semibold text-gray-700">Status</th>
 
@@ -24,6 +28,25 @@
             id={"user-#{user.id}"}
           >
             <td><%= user.email %></td>
+            <td><%= user.phone_number %></td>
+              <td class="p-1">
+              <button
+                phx-click="send_sms"
+                phx-value-id={user.id}
+                class=" bg-green-500 flex gap-2 w-[200px] justify-center items-center text-white  rounded-md p-2 "
+              >
+                Send SMS
+              </button>
+            </td>
+            <td class="p-1">
+              <button
+                phx-click="send_email"
+                phx-value-id={user.id}
+                class=" bg-green-500 flex gap-2 w-[200px] justify-center items-center text-white  rounded-md p-2 "
+              >
+                Send Email
+              </button>
+            </td>
             <td>
               <%= user.role %>
             </td>

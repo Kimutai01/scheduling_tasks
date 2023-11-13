@@ -44,8 +44,8 @@
     >
       About
     </a>
-
-    <%= if @user_signed_in == true do %>
+  
+  <%= if @user_signed_in == true do %>
       <%= link("Log out",
         to: Routes.user_session_path(@socket, :delete),
         method: :delete,
@@ -64,6 +64,9 @@
           "text-white  md:text-xl text-xs  uppercase hover:scale-105 transition-all duration-500 ease-in-out   md:ml-8 ml-2"
       ) %>
     <% end %>
+
+
+    
   </div>
 </div>
 

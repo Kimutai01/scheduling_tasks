@@ -51,6 +51,8 @@ defmodule SchedulingTasks.MixProject do
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
       {:quantum, "~> 3.0"},
+      {:poison, "~> 5.0"},
+      {:httpoison, "~> 2.1"},
       {:ex_heroicons, "~> 2.0.0"},
       {:finch, "~> 0.8"},
       {:tailwind, "~> 0.1", runtime: Mix.env() == :dev}
