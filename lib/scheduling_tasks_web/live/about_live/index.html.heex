@@ -118,7 +118,7 @@
     >
       About Us
     </h2>
-    <h1 class="text-6xl font-bold text-center text-[#201e62] w-[90%] mx-auto">
+    <h1 class="text-4xl md:text-6xl font-bold text-center text-[#201e62] w-[90%] mx-auto">
       Our mission is to make the diagnosis of several faster and more accurate.
     </h1>
     <p
@@ -153,8 +153,8 @@
     <img src="/images/dotors.svg" alt="" class="mt-[-140px]" />
   </div>
 </div>
-<div class="flex gap-10 pt-20 pl-20 items-center">
-  <div class="w-[50%] bg-image-container-right">
+<div class="flex flex-col md:flex-row gap-10 mx-5 pt-20 md:pl-20 items-center">
+  <div class="md:w-[50%] bg-image-container-right">
     <h2
       class="text-2xl text-[#4b81fb] font-bold mb-4 uppercase"
       style="font-family: 'Plus Jakarta Sans', sans-serif"
@@ -194,8 +194,8 @@
   </div>
 </div>
 
-<div class="flex flex-row-reverse gap-10 pt-20 pr-20 items-center bg-[#f7faff]">
-  <div class="w-[50%] bg-image-container-right">
+<div class="flex flex-col md:flex-row-reverse gap-10 pt-20 md:pr-20 items-center bg-[#f7faff]">
+  <div class="md:w-[50%] mx-5 bg-image-container-right">
     <h2
       class="text-2xl text-[#4b81fb] font-bold mb-4 uppercase"
       style="font-family: 'Plus Jakarta Sans', sans-serif"
@@ -237,18 +237,18 @@
     <img src="images/doc.svg" alt="" />
   </div>
 </div>
-<div class="pt-20 px-20">
+<div class="pt-20 px-5 md:px-20">
   <h2
     class="text-2xl text-[#4b81fb] font-bold mb-4 uppercase"
     style="font-family: 'Plus Jakarta Sans', sans-serif"
   >
     Our Mission
   </h2>
-  <h2 class="text-3xl font-extrabold text-[#201e62] w-[50%]">
+  <h2 class="text-2xl md:text-3xl font-bold text-[#201e62] md:w-[50%]">
     Empowering Healthcare with Compassion and Innovation
   </h2>
-  <div class="grid grid-cols-2 gap-10 mt-10">
-    <div class="flex gap-5 shadow-lg p-5 rounded-lg bg-image-container-left">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mt-10">
+    <div class="flex flex-col md:flex-row gap-5 shadow-lg p-5 rounded-lg bg-image-container-left">
       <img src="{% static 'images/care.svg' %}" alt="" />
       <div>
         <div class="border-b border-gray-400 w-[90%] mt-5">
@@ -272,7 +272,7 @@
         </p>
       </div>
     </div>
-    <div class="flex gap-5 shadow-lg p-5 rounded-lg bg-image-container-middle">
+    <div class="flex flex-col md:flex-row gap-5 shadow-lg p-5 rounded-lg bg-image-container-middle">
       <img src="images/respo.svg" alt="" />
       <div>
         <div class="border-b border-gray-400 w-[90%] mt-5">
@@ -297,7 +297,7 @@
         </p>
       </div>
     </div>
-    <div class="flex gap-5 shadow-lg p-5 rounded-lg bg-image-container-middle">
+    <div class="flex flex-col md:flex-row gap-5 shadow-lg p-5 rounded-lg bg-image-container-middle">
       <img src="images/acces.svg" alt="" />
       <div>
         <div class="border-b border-gray-400 w-[90%] mt-5">
@@ -322,7 +322,7 @@
         </p>
       </div>
     </div>
-    <div class="flex gap-5 shadow-lg p-5 rounded-lg bg-image-container-right">
+    <div class="flex flex-col md:flex-row gap-5 shadow-lg p-5 rounded-lg bg-image-container-right">
       <img src="images/respo.svg" alt="" />
       <div>
         <div class="border-b border-gray-400 w-[90%] mt-5">
@@ -358,11 +358,11 @@
     >
       Join the Waitlist
     </h2>
-    <div class="flex gap-20 justify-between items-center">
-      <div class="w-[50%]">
+    <%!-- <div class="flex flex-col md:flex-row gap-20 justify-between items-center">
+      <div class="md:w-[50%]">
         <img src="images/female.svg" alt="" />
       </div>
-      <div class="w-[50%]">
+      <div class="md:w-[50%]">
         <form
           action="{% url 'join_waitlist' %}"
           method="POST"
@@ -419,6 +419,6 @@
           </button>
         </form>
       </div>
-    </div>
+    </div> --%>
   </div>
 </div>
