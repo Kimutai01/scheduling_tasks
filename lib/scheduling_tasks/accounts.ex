@@ -22,6 +22,18 @@ defmodule SchedulingTasks.Accounts do
       nil
 
   """
+
+  def update_user(%User{} = user, attrs) do
+    user
+    |> User.changeset(attrs)
+    |> Repo.update()
+  end
+
+  def list_users do
+    Repo.all(User)
+  end
+
+
   def get_user_by_email(email) when is_binary(email) do
     Repo.get_by(User, email: email)
   end

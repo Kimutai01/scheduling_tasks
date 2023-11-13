@@ -1,0 +1,424 @@
+<div
+  phx-hook="Scroll"
+  id="scroll"
+  class="bg-[#131830] fixed  z-50 w-[100%] top 0   poppins-regular p-4 hidden md:flex items-center justify-between  mx-auto"
+>
+  <div>
+    <a
+      href="/"
+      class="text-white allura  md:text-xl text-xs uppercase hover:scale-105 transition-all duration-500 ease-in-out  md:ml-8 ml-2"
+    >
+      Society of engineering students
+    </a>
+  </div>
+
+  <div class="flex gap-2 items-center">
+    <%= if @user_signed_in == true do %>
+      <%= live_redirect("Dashboard",
+        to: Routes.dashboard_index_path(@socket, :index),
+        class:
+          "text-white  md:text-xl text-xs  uppercase hover:scale-105 transition-all duration-500 ease-in-out   md:ml-8 ml-2"
+      ) %>
+    <% end %>
+
+    <%= if @user_signed_in == true do %>
+      <%= if @current_user.role == "verified" do %>
+        <%= live_redirect("User manager",
+          to: Routes.users_index_path(@socket, :index),
+          class:
+            "text-white  md:text-xl text-xs  uppercase hover:scale-105 transition-all duration-500 ease-in-out   md:ml-8 ml-2"
+        ) %>
+      <% end %>
+    <% end %>
+
+    <a
+      href="#footer"
+      class="text-white  md:text-xl text-xs  uppercase hover:scale-105 transition-all duration-500 ease-in-out   md:ml-8 ml-2"
+    >
+      Contact
+    </a>
+
+    <a
+      href="/about"
+      class="text-white  md:text-xl text-xs  uppercase hover:scale-105 transition-all duration-500 ease-in-out   md:ml-8 ml-2"
+    >
+      About
+    </a>
+
+    <%= if @user_signed_in == true do %>
+      <%= link("Log out",
+        to: Routes.user_session_path(@socket, :delete),
+        method: :delete,
+        class:
+          "text-white  md:text-xl text-xs  uppercase hover:scale-105 transition-all duration-500 ease-in-out   md:ml-8 ml-2"
+      ) %>
+    <% else %>
+      <%= live_redirect("Register",
+        to: Routes.user_registration_path(@socket, :new),
+        class:
+          "text-white  md:text-xl text-xs  uppercase hover:scale-105 transition-all duration-500 ease-in-out   md:ml-8 ml-2"
+      ) %>
+      <%= live_redirect("Log in",
+        to: Routes.user_session_path(@socket, :new),
+        class:
+          "text-white  md:text-xl text-xs  uppercase hover:scale-105 transition-all duration-500 ease-in-out   md:ml-8 ml-2"
+      ) %>
+    <% end %>
+  </div>
+</div>
+
+<div id="navscroll" phx-hook="NavScroll">
+  <nav phx-hook="Navbar" id="nav">
+    <div class="navtransparent fixed  z-50 w-[100%] top 0  md:hidden flex justify-between p-2">
+      <div></div>
+      <button id="toggleButton" class=" flex flex-col  rounded-md gap-2  ">
+        <div class="h-[2px] bg-white w-[40px]" />
+        <div class="h-[2px] bg-white w-[40px]" />
+        <div class="h-[2px] bg-white w-[40px]" />
+      </button>
+    </div>
+
+    <div
+      id="sidebar"
+      class="fixed green top-0 left-0 h-full quicksand w-60 z-50 bg-[white]  text-black transition duration-300 transform -translate-x-full"
+    >
+      <div
+        class="flex flex-col poppins-regular text-xl gap-4 items-start p-4 pt-24 "
+        id="sidebarContent"
+      >
+        <a
+          href="/"
+          class="uppercase hover:scale-105 transition-all duration-500 ease-in-out  md:ml-8 ml-2"
+        >
+          Home
+        </a>
+        <a
+          href="/events/1"
+          class="uppercase hover:scale-105 transition-all duration-500 ease-in-out  md:ml-8 ml-2"
+        >
+          Buy Ticket
+        </a>
+
+        <a
+          href="#footer"
+          class="uppercase hover:scale-105 transition-all duration-500 ease-in-out   md:ml-8 ml-2"
+        >
+          Contact
+        </a>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<div class="flex pt-28 justify-center min-h-screen bg-[#f7faff]">
+  <div class="text-center bg-image-container">
+    <h2
+      class="text-2xl text-[#4b81fb] font-bold mb-4 uppercase"
+      style="font-family: 'Plus Jakarta Sans', sans-serif"
+    >
+      About Us
+    </h2>
+    <h1 class="text-6xl font-bold text-center text-[#201e62] w-[90%] mx-auto">
+      Our mission is to make the diagnosis of several faster and more accurate.
+    </h1>
+    <p
+      class="mt-10 text-[#73729c] text-lg font-medium text-center w-[55%] mx-auto"
+      style="font-family: 'Plus Jakarta Sans', sans-serif"
+    >
+      We understand the challenges that healthcare professionals face daily,
+      including burnout and the need for more efficient tools.
+    </p>
+    <div>
+      <button
+        class="bg-[#4b81fb] text-white px-8 py-3 rounded-full mt-10"
+        style="font-family: 'Plus Jakarta Sans', sans-serif"
+      >
+        Learn More
+      </button>
+
+      <button
+        class="bg-[#f7faff] text-[#4b81fb] px-8 py-3 rounded-full mt-10 border-2 border-[#4b81fb] ml-5"
+        style="font-family: 'Plus Jakarta Sans', sans-serif"
+      >
+        Contact Us
+      </button>
+    </div>
+  </div>
+  <div
+    class="absolute right-0 top-0 w-full h-full bg-image-container-right"
+  ></div>
+</div>
+<div class="bg-blue-500">
+  <div class="flex justify-center">
+    <img src="/images/dotors.svg" alt="" class="mt-[-140px]" />
+  </div>
+</div>
+<div class="flex gap-10 pt-20 pl-20 items-center">
+  <div class="w-[50%] bg-image-container-right">
+    <h2
+      class="text-2xl text-[#4b81fb] font-bold mb-4 uppercase"
+      style="font-family: 'Plus Jakarta Sans', sans-serif"
+    >
+      Our story
+    </h2>
+    <h2
+      class="text-5xl font-bold text-[#201e62]"
+      style="font-family: 'Plus Jakarta Sans', sans-serif"
+    >
+      MedAssist started in 2023 with one big mission behind
+    </h2>
+    <p
+      class="mt-10 text-[#73729c] text-lg font-medium"
+      style="font-family: 'Plus Jakarta Sans', sans-serif"
+    >
+      At MedAssist, our journey began with a shared passion for revolutionizing
+      healthcare and making a positive impact on the lives of patients and
+      healthcare professionals. Our story is one of dedication, innovation, and
+      a relentless pursuit of excellence in the field of medical diagnostics.
+    </p>
+
+    <p
+      class="mt-10 text-[#73729c] text-lg font-medium"
+      style="font-family: 'Plus Jakarta Sans', sans-serif"
+    >
+      MedAssist was born from a collective vision to address the challenges
+      faced by doctors in their daily practice. We recognized the immense
+      potential of technology to transform the diagnostic process and improve
+      patient outcomes. Fueled by this insight, a team of brilliant minds from
+      diverse backgrounds in medicine, data science, and technology came
+      together to create a solution that could change the face of healthcare.
+    </p>
+  </div>
+  <div>
+    <img src="images/female.svg" alt="" />
+  </div>
+</div>
+
+<div class="flex flex-row-reverse gap-10 pt-20 pr-20 items-center bg-[#f7faff]">
+  <div class="w-[50%] bg-image-container-right">
+    <h2
+      class="text-2xl text-[#4b81fb] font-bold mb-4 uppercase"
+      style="font-family: 'Plus Jakarta Sans', sans-serif"
+    >
+      Our Mission
+    </h2>
+    <h2
+      class="text-5xl font-bold text-[#201e62]"
+      style="font-family: 'Plus Jakarta Sans', sans-serif"
+    >
+      Our mission is to make the diagnosis of several faster and more accurate
+      and.
+    </h2>
+    <p
+      class="mt-10 text-[#73729c] text-lg font-medium"
+      style="font-family: 'Plus Jakarta Sans', sans-serif"
+    >
+      Our mission is simple yet ambitious: to provide doctors with an
+      indispensable tool that empowers them to make faster, more accurate
+      diagnoses, leading to better patient care and treatment. We aimed to
+      reduce the stress and burnout experienced by healthcare professionals by
+      offering a supportive and reliable platform that complements their
+      expertise.
+    </p>
+
+    <p
+      class="mt-10 mb-10 text-[#73729c] text-lg font-medium"
+      style="font-family: 'Plus Jakarta Sans', sans-serif"
+    >
+      From the very beginning, innovation has been at the heart of MedAssist. We
+      invested countless hours in research, development, and collaboration with
+      medical experts to craft an app that seamlessly integrates into the lives
+      of doctors. Leveraging cutting-edge technology, including artificial
+      intelligence and machine learning, we built a platform that constantly
+      evolves and adapts to meet the dynamic needs of the medical community.
+    </p>
+  </div>
+  <div>
+    <img src="images/doc.svg" alt="" />
+  </div>
+</div>
+<div class="pt-20 px-20">
+  <h2
+    class="text-2xl text-[#4b81fb] font-bold mb-4 uppercase"
+    style="font-family: 'Plus Jakarta Sans', sans-serif"
+  >
+    Our Mission
+  </h2>
+  <h2 class="text-3xl font-extrabold text-[#201e62] w-[50%]">
+    Empowering Healthcare with Compassion and Innovation
+  </h2>
+  <div class="grid grid-cols-2 gap-10 mt-10">
+    <div class="flex gap-5 shadow-lg p-5 rounded-lg bg-image-container-left">
+      <img src="{% static 'images/care.svg' %}" alt="" />
+      <div>
+        <div class="border-b border-gray-400 w-[90%] mt-5">
+          <h3
+            class="font-bold text-3xl text-[#201e62] p-3"
+            style="font-family: 'Plus Jakarta Sans', sans-serif"
+          >
+            Empathy
+          </h3>
+        </div>
+        <p
+          class="mt-5 text-[#73729c] text-lg font-medium"
+          style="font-family: 'Plus Jakarta Sans', sans-serif"
+        >
+          At MedAssist, we believe in fostering empathy throughout the
+          healthcare journey. We understand the challenges faced by both
+          patients and healthcare professionals and strive to create a platform
+          that reflects our genuine care for their well-being. Empathy forms the
+          core of our values, guiding us to deliver solutions that truly make a
+          positive impact on lives.
+        </p>
+      </div>
+    </div>
+    <div class="flex gap-5 shadow-lg p-5 rounded-lg bg-image-container-middle">
+      <img src="images/respo.svg" alt="" />
+      <div>
+        <div class="border-b border-gray-400 w-[90%] mt-5">
+          <h3
+            class="font-bold text-3xl text-[#201e62] p-3"
+            style="font-family: 'Plus Jakarta Sans', sans-serif"
+          >
+            Responsibility
+          </h3>
+        </div>
+        <p
+          class="mt-5 text-[#73729c] text-lg font-medium"
+          style="font-family: 'Plus Jakarta Sans', sans-serif"
+        >
+          We take our responsibility to the healthcare community seriously.
+          MedAssist is built on a foundation of trust and reliability. We hold
+          ourselves accountable for providing doctors with accurate diagnostic
+          assistance and supporting them in their pursuit of better patient
+          outcomes. Our commitment to responsibility drives us to constantly
+          improve and deliver solutions that meet the highest standards of
+          quality and ethics.
+        </p>
+      </div>
+    </div>
+    <div class="flex gap-5 shadow-lg p-5 rounded-lg bg-image-container-middle">
+      <img src="images/acces.svg" alt="" />
+      <div>
+        <div class="border-b border-gray-400 w-[90%] mt-5">
+          <h3
+            class="font-bold text-3xl text-[#201e62] p-3"
+            style="font-family: 'Plus Jakarta Sans', sans-serif"
+          >
+            Care and Services
+          </h3>
+        </div>
+        <p
+          class="mt-5 text-[#73729c] text-lg font-medium"
+          style="font-family: 'Plus Jakarta Sans', sans-serif"
+        >
+          Our dedication to care is evident in every aspect of MedAssist. We are
+          committed to offering healthcare professionals a seamless and
+          intuitive platform that enriches their practice. MedAssist is designed
+          with attention to detail, ensuring a user-friendly experience for
+          doctors and patients alike. With a focus on exceptional service, we
+          prioritize the needs of our users, providing them with the best tools
+          to deliver top-notch medical care.
+        </p>
+      </div>
+    </div>
+    <div class="flex gap-5 shadow-lg p-5 rounded-lg bg-image-container-right">
+      <img src="images/respo.svg" alt="" />
+      <div>
+        <div class="border-b border-gray-400 w-[90%] mt-5">
+          <h3
+            class="font-bold text-3xl text-[#201e62] p-3"
+            style="font-family: 'Plus Jakarta Sans', sans-serif"
+          >
+            Accessibility
+          </h3>
+        </div>
+        <p
+          class="mt-5 text-[#73729c] text-lg font-medium"
+          style="font-family: 'Plus Jakarta Sans', sans-serif"
+        >
+          We believe that cutting-edge healthcare technology should be
+          accessible to all. MedAssist is designed to seamlessly integrate into
+          existing medical workflows, ensuring that doctors can easily adopt and
+          benefit from our app. Our commitment to accessibility extends beyond
+          technology to support and guidance for users at every step. Together,
+          we strive to create a healthcare landscape that is inclusive,
+          efficient, and accessible to all.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mt-10 mx-10">
+  <div class="bg-image-container">
+    <h2
+      class="text-2xl text-[#4b81fb] font-bold mb-4 uppercase"
+      style="font-family: 'Plus Jakarta Sans', sans-serif"
+    >
+      Join the Waitlist
+    </h2>
+    <div class="flex gap-20 justify-between items-center">
+      <div class="w-[50%]">
+        <img src="images/female.svg" alt="" />
+      </div>
+      <div class="w-[50%]">
+        <form
+          action="{% url 'join_waitlist' %}"
+          method="POST"
+          class="flex flex-col"
+        >
+          {% csrf_token %}
+          <div class="flex gap-3">
+            <input
+              type="text"
+              placeholder="Enter your first name"
+              name="first_name"
+              class="border-2 border-[#4b81fb] rounded-lg px-5 py-3 w-[100%]"
+            />
+            <input
+              type="text"
+              placeholder="Enter your last name"
+              name="last_name"
+              class="border-2 border-[#4b81fb] rounded-lg px-5 py-3 w-[100%]"
+            />
+          </div>
+          <div class="w-[100%] flex gap-3">
+            <input
+              type="text"
+              placeholder="Enter your email"
+              name="email"
+              class="border-2 border-[#4b81fb] rounded-lg px-5 py-3 mt-5 w-[100%]"
+            />
+            <input
+              type="text"
+              placeholder="Enter your phone number"
+              name="phone_number"
+              class="border-2 border-[#4b81fb] rounded-lg px-5 py-3 mt-5 w-[100%]"
+            />
+          </div>
+
+          <select
+            class="border-2 border-[#4b81fb] rounded-lg px-5 py-3 mt-5 w-[100%]"
+            name="profession"
+          >
+            <option value="">Select your profession</option>
+            <option value="General Practitioner">General Practitioner</option>
+            <option value="Surgeon">Surgeon</option>
+            <option value="Cardiologist">Cardiologist</option>
+            <option value="Dermatologist">Dermatologist</option>
+            <option value="Pediatrician">Pediatrician</option>
+          </select>
+
+          <button
+            type="submit"
+            class="bg-[#4b81fb] text-white px-8 py-3 rounded-lg mt-10"
+            style="font-family: 'Plus Jakarta Sans', sans-serif"
+          >
+            Join the Waitlist
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

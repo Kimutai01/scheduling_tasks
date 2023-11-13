@@ -1,0 +1,135 @@
+<main>
+  <%= if @flash["info"] do %>
+    <p
+      class="alert alert-info hideMsg"
+      role="alert"
+      phx-click="lv:clear-flash"
+      phx-value-key="info"
+    >
+      <%= live_flash(@flash, :info) %>
+    </p>
+  <% end %>
+
+  <%= if @flash["error"] do %>
+    <p
+      class="alert alert-danger hideMsg"
+      role="alert"
+      phx-click="lv:clear-flash"
+      phx-value-key="error"
+    >
+      <%= live_flash(@flash, :error) %>
+    </p>
+  <% end %>
+  <div class="bg-[#F5F6FA] w-[100%] flex  ">
+    <div class="w-[20%] m-4 rounded-md fixed h-[95vh] jakrata-regular hidden gap-4  md:flex text-xl flex-col justify-start p-4 bg-white  bg-cover">
+      <%= live_redirect to: Routes.home_index_path(@socket, :index) , class: " w-[100px] flex justify-start items-start" do %>
+        <img src="/images/logo.JPG" class="w-[50px] h-[50px] rounded-full object-contain" />
+      <% end %>
+
+      <%= if @url == "/dashboard" do %>
+        <%= live_redirect to: Routes.dashboard_index_path(@socket, :index) do %>
+          <div class="flex gap-2  bg-blue-500 text-white rounded-md   p-2 items-center">
+            <%= Heroicons.icon("table-cells",
+              type: "solid",
+              class: "h-6   font-bold w-6"
+            ) %>
+            <p>
+              Dashboard
+            </p>
+          </div>
+        <% end %>
+      <% else %>
+        <%= live_redirect to: Routes.dashboard_index_path(@socket, :index)  do %>
+          <div class="flex gap-2   p-2 items-center">
+            <%= Heroicons.icon("table-cells",
+              type: "solid",
+              class: "h-6   font-bold w-6"
+            ) %>
+            <p>
+              Dashboard
+            </p>
+          </div>
+        <% end %>
+      <% end %>
+
+     
+
+    
+
+     
+      
+
+      <%= if @url == "/system_users" do %>
+        <%= live_redirect to: Routes.system_user_index_path(@socket, :index)  do %>
+          <div class="flex gap-2  bg-blue-500 text-white rounded-md   p-2 items-center">
+            <%= Heroicons.icon("user-group",
+              type: "solid",
+              class: "h-6   font-bold w-6"
+            ) %>
+            <p>
+              System Users
+            </p>
+          </div>
+        <% end %>
+      <% else %>
+        <%= live_redirect to: Routes.users_index_path(@socket, :index)  do %>
+          <div class="flex gap-2   p-2 items-center">
+            <%= Heroicons.icon("user-group",
+              type: "solid",
+              class: "h-6   font-bold w-6"
+            ) %>
+            <p>
+              System Users
+            </p>
+          </div>
+        <% end %>
+      <% end %>
+      
+
+      <%= link(to: Routes.user_settings_path(@socket, :edit))  do %>
+        <div class="flex gap-2   p-2 items-center">
+          <%= Heroicons.icon("cog-6-tooth",
+            type: "solid",
+            class: "h-8   font-bold w-6"
+          ) %>
+          <p>
+            Settings
+          </p>
+        </div>
+      <% end %>
+      <%= link to: Routes.user_session_path(@socket, :delete), method: :delete  do %>
+        <div class="flex gap-2   p-2 items-center">
+          <%= Heroicons.icon("power",
+            type: "solid",
+            class: "h-6   font-bold w-6"
+          ) %>
+          <p>
+            Logout
+          </p>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="flex w-[100%] overflow-scroll m-4  min-h-[100vh] ml-[25%] flex-col gap-4">
+      <div class="flex w-[100%] justify-between">
+        <p>
+          MedAssist
+        </p>
+      </div>
+
+      <div class="w-[100%] flex justify-between ">
+        <p class="text-gray-600 font-bold text-3xl ">
+          <%= @url |> String.replace("/", "") |> String.replace("_", "") |> String.capitalize() %>
+        </p>
+
+        <div class="flex gap-2 items-center">
+          <p class="bg-blue-500 uppercase w-[50px] flex flex-col justify-center items-center h-[50px]  rounded-full text-2xl text-white font-semibold ">
+            <%= @current_user.email |> String.at(0) %>
+          </p>
+        </div>
+      </div>
+
+      <%= @inner_content %>
+    </div>
+  </div>
+</main>

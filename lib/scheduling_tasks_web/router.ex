@@ -19,8 +19,10 @@ defmodule SchedulingTasksWeb.Router do
 
   scope "/", SchedulingTasksWeb do
     pipe_through :browser
+    live "/about", AboutLive.Index, :index
+    live "/", HomeLive.Index, :index
 
-    get "/", PageController, :index
+    # get "/", PageController, :index
   end
 
   # Other scopes may use custom stacks.
@@ -41,7 +43,7 @@ defmodule SchedulingTasksWeb.Router do
     scope "/" do
       pipe_through :browser
 
-      live_dashboard "/dashboard", metrics: SchedulingTasksWeb.Telemetry
+      # live_dashboard "/dashboard", metrics: SchedulingTasksWeb.Telemetry
     end
   end
 
@@ -75,6 +77,8 @@ defmodule SchedulingTasksWeb.Router do
   scope "/", SchedulingTasksWeb do
     pipe_through [:browser, :require_authenticated_user]
 
+    live "/users", UsersLive.Index, :index
+    live "/dashboard", DashboardLive.Index, :index
     get "/users/settings", UserSettingsController, :edit
     put "/users/settings", UserSettingsController, :update
     get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email

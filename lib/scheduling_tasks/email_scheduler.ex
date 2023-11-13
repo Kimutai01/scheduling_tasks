@@ -3,6 +3,6 @@ defmodule SchedulingTasks.EmailScheduler do
   def send_emails do
     # Logic to send emails
     IO.puts "Sending emails..."
-    UserNotifier.deliver("kiprotichkimutai01@gmail.com", "Hello", "Hello from Elixir")
+    UserNotifier.deliver("twarukira@gmail.com", "Hello", "Hello from Elixir")
   end
 end

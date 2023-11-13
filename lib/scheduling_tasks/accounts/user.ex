@@ -5,6 +5,7 @@ defmodule SchedulingTasks.Accounts.User do
   schema "users" do
     field :email, :string
     field :password, :string, virtual: true, redact: true
+    field :role, :string, default: "unverified"
     field :hashed_password, :string, redact: true
     field :confirmed_at, :naive_datetime
 
@@ -30,7 +31,7 @@ defmodule SchedulingTasks.Accounts.User do
   """
   def registration_changeset(user, attrs, opts \\ []) do
     user
-    |> cast(attrs, [:email, :password])
+    |> cast(attrs, [:email, :password, :role])
     |> validate_email()
     |> validate_password(opts)
   end
@@ -67,6 +68,11 @@ defmodule SchedulingTasks.Accounts.User do
     else
       changeset
     end
+  end
+
+  def changeset(user, attrs, opts \\ []) do
+    user
+    |> cast(attrs, [:email, :password, :role])
   end
 
   @doc """

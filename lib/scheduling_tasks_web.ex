@@ -59,6 +59,15 @@ defmodule SchedulingTasksWeb do
     end
   end
 
+   def dashboard_live_view do
+    quote do
+      use Phoenix.LiveView,
+        layout: {SchedulingTasksWeb.LayoutView, "dashboard_live.html"}
+
+      unquote(view_helpers())
+    end
+  end
+
   def component do
     quote do
       use Phoenix.Component

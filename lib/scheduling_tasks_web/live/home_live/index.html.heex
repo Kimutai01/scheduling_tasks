@@ -1,0 +1,179 @@
+<div
+  phx-hook="Scroll"
+  id="scroll"
+  class="transparent fixed  z-50 w-[100%] top 0   poppins-regular p-4 hidden md:flex items-center justify-between  mx-auto"
+>
+  <div>
+    <a
+      href="/"
+      class="text-white allura  md:text-xl text-xs uppercase hover:scale-105 transition-all duration-500 ease-in-out  md:ml-8 ml-2"
+    >
+      MedAssist
+    </a>
+  </div>
+
+  <div class="flex gap-2 items-center">
+    <%= if @user_signed_in == true do %>
+      <%= live_redirect("Dashboard",
+        to: Routes.dashboard_index_path(@socket, :index),
+        class:
+          "text-white  md:text-xl text-xs  uppercase hover:scale-105 transition-all duration-500 ease-in-out   md:ml-8 ml-2"
+      ) %>
+    <% end %>
+
+    <%= if @user_signed_in == true do %>
+      <%= if @current_user.role == "verified" do %>
+        <%= live_redirect("User manager",
+          to: Routes.users_index_path(@socket, :index),
+          class:
+            "text-white  md:text-xl text-xs  uppercase hover:scale-105 transition-all duration-500 ease-in-out   md:ml-8 ml-2"
+        ) %>
+      <% end %>
+    <% end %>
+
+    <a
+      href="#footer"
+      class="text-white  md:text-xl text-xs  uppercase hover:scale-105 transition-all duration-500 ease-in-out   md:ml-8 ml-2"
+    >
+      Contact
+    </a>
+
+    <a
+      href="/about"
+      class="text-white  md:text-xl text-xs  uppercase hover:scale-105 transition-all duration-500 ease-in-out   md:ml-8 ml-2"
+    >
+      About
+    </a>
+
+    <%= if @user_signed_in == true do %>
+      <%= link("Log out",
+        to: Routes.user_session_path(@socket, :delete),
+        method: :delete,
+        class:
+          "text-white  md:text-xl text-xs  uppercase hover:scale-105 transition-all duration-500 ease-in-out   md:ml-8 ml-2"
+      ) %>
+    <% else %>
+      <%= live_redirect("Register",
+        to: Routes.user_registration_path(@socket, :new),
+        class:
+          "text-white  md:text-xl text-xs  uppercase hover:scale-105 transition-all duration-500 ease-in-out   md:ml-8 ml-2"
+      ) %>
+      <%= live_redirect("Log in",
+        to: Routes.user_session_path(@socket, :new),
+        class:
+          "text-white  md:text-xl text-xs  uppercase hover:scale-105 transition-all duration-500 ease-in-out   md:ml-8 ml-2"
+      ) %>
+    <% end %>
+  </div>
+</div>
+
+<div id="navscroll" phx-hook="NavScroll">
+  <nav phx-hook="Navbar" id="nav">
+    <div class="navtransparent fixed  z-50 w-[100%] top 0  md:hidden flex justify-between p-2">
+      <div></div>
+      <button id="toggleButton" class=" flex flex-col  rounded-md gap-2  ">
+        <div class="h-[2px] bg-white w-[40px]" />
+        <div class="h-[2px] bg-white w-[40px]" />
+        <div class="h-[2px] bg-white w-[40px]" />
+      </button>
+    </div>
+
+    <div
+      id="sidebar"
+      class="fixed green top-0 left-0 h-full quicksand w-60 z-50 bg-[white]  text-black transition duration-300 transform -translate-x-full"
+    >
+      <div
+        class="flex flex-col poppins-regular text-xl gap-4 items-start p-4 pt-24 "
+        id="sidebarContent"
+      >
+        <a
+          href="/"
+          class="uppercase hover:scale-105 transition-all duration-500 ease-in-out  md:ml-8 ml-2"
+        >
+          Home
+        </a>
+        <a
+          href="/events/1"
+          class="uppercase hover:scale-105 transition-all duration-500 ease-in-out  md:ml-8 ml-2"
+        >
+          Buy Ticket
+        </a>
+
+        <a
+          href="#footer"
+          class="uppercase hover:scale-105 transition-all duration-500 ease-in-out   md:ml-8 ml-2"
+        >
+          Contact
+        </a>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<div class="bg-home px-5 md:px-20">
+  <div class="flex flex-col md:flex-row gap-10 md:gap-20">
+    <div class="border-[#5e5f79] rounded-lg flex flex-row md:flex-col gap-2 items-center border-[1px] w-[80%] md:w-[15%] p-4 md:p-10 ">
+      <h4 class="text-white font-extrabold text-3xl md:text-5xl ">18</h4>
+      <div class="border-[0.3px] hidden md:block w-12 border-[#5e5f79]"></div>
+      <div class="border-r-[0.5px] md:hidden h-8 border-[#5e5f79]"></div>
+      <h4 class="text-white font-extrabold text-3xl md:text-5xl">12</h4>
+      <div class="border-2 w-4 md:w-12 border-[#fff]"></div>
+      <h4 class="text-white font-extrabold text-2xl">DEC</h4>
+      <h4 class="text-white font-extrabold text-2xl">2023</h4>
+    </div>
+    <div>
+      <h2 class="text-white uppercase text-3xl font-semibold tracking-wide">
+        Presenting
+      </h2>
+      <p class="text-white capitalize font-bold text-3xl md:text-5xl mt-5">
+        <span class="text-[#316bff]">#1</span> JKUAT Society of
+        engineering students <span class="text-[#316bff] lowercase">annual dinner</span>
+      </p>
+      <div class="flex flex-col md:flex-row">
+        <button class="bg-[#316bff] text-white text-xl font-semibold px-10 py-4 rounded-lg mt-10 hover:scale-95 transition-all duration-300">
+          <a href="/events/1">
+            Buy Tickets
+          </a>
+        </button>
+        <button class="border-2 border-[#c0c1d1] hover:border-none hover:bg-[#316bff] text-white text-xl font-semibold px-10 py-3 rounded-lg mt-10 md:ml-5 hover:scale-95 transition-all duration-300">
+          <a href="/products/1">
+            Buy Tshirts
+          </a>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="flex flex-col md:flex-row py-20 mx-5 md:mx-20 justify-between">
+  <div class="md:w-[50%]">
+    <h1 class="text-2xl md:text-5xl text-[#1a2447] font-extrabold">
+      A <span class="text-[#316bff]">dinner</span> for JKUAT Socety of
+      Engineering Students
+    </h1>
+    <p class="mt-10 text-[#5e5f79] text-lg md:text-xl">
+      This is a dinner for JKUAT Socety of Engineering Students which will
+      be held on 18th December 2023 at Spur Mall, Ruiru. The dinner will
+      start at 6pm and end at 10pm. The dinner will be a celebration of the
+      society's achievements and a way to appreciate the students who have
+      been working hard to make the society a success. There will be awards
+      given to the best performing students in the society.
+    </p>
+    <button class="border-[#c0c1d1] border-[0.5px] text-[#1a2447] w-full md:w-[40%] text-xl font-semibold px-10 py-4 rounded-lg mt-10 hover:scale-95 transition-all duration-300">
+      Buy Tickets
+    </button>
+  </div>
+  <div class=" bg-image-container-left flex gap-5 mt-10 md:mt-0 ">
+    <div class="border-[#5e5f79] bg-[#316bff]  h-[280px] rounded-xl flex flex-col gap-2 items-center border-[1px] w-60  p-16 ">
+      <h4 class="text-white font-extrabold text-5xl md:text-7xl ">18</h4>
+      <h4 class="text-white font-extrabold text-2xl md:text-3xl">DEC</h4>
+      <h4 class="text-white font-extrabold text-2xl">2023</h4>
+    </div>
+    <div class="border-[#5e5f79] bg-[#fff] bg-image-container-right  rounded-xl mt-56 -ml-28 flex w-60  flex-col gap-2 items-center border-[1px]  p-10 ">
+      <h4 class="text-[#1A2447] font-extrabold text-5xl ">6pm</h4>
+      <h4 class="text-[#1A2447] font-extrabold text-2xl">to</h4>
+      <h4 class="text-[#1A2447]font-extrabold text-5xl">10pm</h4>
+      <h4 class="text-[#1A2447] font-extrabold text-2xl">Spur Mall</h4>
+    </div>
+  </div>
+</div>
